@@ -5,7 +5,7 @@ npm i --save-dev nodemon
 docker build -t express_node_app .
 docker image ls
 docker image rmi express_node_app
-// run docker with name , deattch mode to run in background , with port 
+// run docker with name , deattach mode to run in background , with port 
 docker run  --name  express_node_app_container -d -p 4000:4000 express_node_app
 docker container ps
 docker container stop express_node_app_container
@@ -20,6 +20,8 @@ docker exec -it express_node_app_container bash
 pwd
 // all files 
 ls
+// print all env variables
+printenv
 // to show logs in container 
 docker logs express_node_app_container
 //===========================================
@@ -46,3 +48,5 @@ docker run  --name  express_node_app_container -d -v ${pwd}/src:/app/src:ro  -p 
 // run docker compose
 docker-compose up
 docker-compose up -de
+// stop docker compose
+docker-compose down

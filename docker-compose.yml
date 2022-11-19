@@ -7,3 +7,5 @@ services:
       - ./src:/app/src:ro # here we use relative path not absolute path  # with mode read only
     ports:
       - "4000:4000"
+    env_file:
+      - ./.env
