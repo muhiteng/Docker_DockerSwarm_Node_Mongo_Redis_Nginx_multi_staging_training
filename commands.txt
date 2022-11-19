@@ -43,3 +43,6 @@ docker run  --name  express_node_app_container -d -v ${pwd}:/app:ro -v /app/node
 //********** best solution ***********
 //********* bind mount one way from folder src only
 docker run  --name  express_node_app_container -d -v ${pwd}/src:/app/src:ro  -p 4000:4000 express_node_app
+// run docker compose
+docker-compose up
+docker-compose up -de
