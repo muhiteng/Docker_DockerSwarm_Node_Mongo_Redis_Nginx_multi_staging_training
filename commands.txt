@@ -1,3 +1,12 @@
 npm init -y
 npm i express
 npm i --save-dev nodemon
+// docker commands
+docker build -t express_node_app .
+docker image ls
+docker image rmi express_node_app
+docker run  --name  express_node_app_container -d -p 4000:4000 express_node_app
+docker container ps
+docker container stop express_node_app_container
+docker container rm express_node_app_container
+docker container rm express_node_app_container -f
