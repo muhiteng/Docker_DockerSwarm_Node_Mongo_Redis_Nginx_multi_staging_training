@@ -20,3 +20,26 @@ docker exec -it express_node_app_container bash
 pwd
 // all files 
 ls
+// to show logs in container 
+docker logs express_node_app_container
+//===========================================
+//=========== volumes ===============
+// ======== 1 . bind mount volume ======================
+// to sync changes use -v absoulute_path:/app flag in run 
+// run command not resolve relative path , so we must use relative path
+// absoulute_path is the path to main directory
+// this way is twobind (two way binding )(change in container will change code )(bind mount volume type)
+docker run  --name  express_node_app_container -d -v absoulute_path:/app -p 4000:4000 express_node_app
+//or using print working directory(pwd)
+docker run  --name  express_node_app_container -d -v ${pwd}:/app -p 4000:4000 express_node_app
+//this way is onebind (one way binding )(change in container will not change code )(bind mount volume type)(ro  read only)
+docker run  --name  express_node_app_container -d -v absoulute_path:/app:ro -p 4000:4000 express_node_app
+//or using print working directory(pwd)
+docker run  --name  express_node_app_container -d -v ${pwd}:/app:ro -p 4000:4000 express_node_app
+// ======== 2 . anonymous volume ======================
+// to not change directory /app/node_modules
+docker run  --name  express_node_app_container -d -v ${pwd}:/app:ro -v /app/node_modules -p 4000:4000 express_node_app
+
+//********** best solution ***********
+//********* bind mount one way from folder src only
+docker run  --name  express_node_app_container -d -v ${pwd}/src:/app/src:ro  -p 4000:4000 express_node_app
