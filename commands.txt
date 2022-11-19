@@ -50,3 +50,7 @@ docker-compose up
 docker-compose up -de
 // stop docker compose
 docker-compose down
+// run specific docker-compose file (use -f flag)
+docker-compose -f docker-compose.dev.yml up -d
+// stop specific docker-compose file (use -f flag)
+docker-compose -f docker-compose.dev.yml down
