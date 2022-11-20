@@ -3,8 +3,7 @@ services:
   node-app:
     build:
       context: . # from any location to Dockerfile
-      args:
-        - NODE_ENV=development
+      target: development  # to determine stage in Dockerfile
     volumes:
       - ./src:/app/src:ro # here we use relative path not absolute path  # with mode read only
 
