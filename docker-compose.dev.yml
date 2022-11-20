@@ -1,13 +1,13 @@
 version: "3"
 services:
   node-app:
-    container_name: express-node-app-container
-    build: .
+    build:
+      context: . # from any location to Dockerfile
+      args:
+        - NODE_ENV=development
     volumes:
       - ./src:/app/src:ro # here we use relative path not absolute path  # with mode read only
-    ports:
-      - "4000:4000"
+
     environment:
       - NODE_ENV=development
-    env_file:
-      - ./.env
+    command: npm run start-dev # override CMD [ "npm","run","start-dev" ]  in Dockerfile

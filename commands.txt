@@ -54,3 +54,7 @@ docker-compose down
 docker-compose -f docker-compose.dev.yml up -d
 // stop specific docker-compose file (use -f flag)
 docker-compose -f docker-compose.dev.yml down
+// run 2 doker-compose files, here docker-compose.yml  has a common settings
+docker-compose -f docker-compose.yml  -f docker-compose.dev.yml up -d
+//if want to rebuild docker file important for dev
+docker-compose -f docker-compose.yml  -f docker-compose.dev.yml up -d --build

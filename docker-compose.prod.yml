@@ -1,11 +1,10 @@
 version: "3"
 services:
   node-app:
-    container_name: express-node-app-container
-    build: .
-    ports:
-      - "4000:4000"
+    build: 
+     context: .   # from any location to Dockerfile
+     args:
+      - NODE_ENV=production 
     environment:
       - NODE_ENV=production
-    env_file:
-      - ./.env
+    command: npm start    # override CMD [ "npm","run","start-dev" ]  in Dockerfile
