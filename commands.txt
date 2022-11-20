@@ -1,5 +1,6 @@
 npm init -y
 npm i express
+npm i mongoose
 npm i --save-dev nodemon
 // docker commands
 docker build -t express_node_app .
@@ -24,6 +25,8 @@ ls
 printenv
 // to show logs in container 
 docker logs express_node_app_container
+//to show logs in container and still opeen use -f (follow)flag
+docker logs express_node_app_container -f 
 //===========================================
 //=========== volumes ===============
 // ======== 1 . bind mount volume ======================
@@ -54,7 +57,27 @@ docker-compose down
 docker-compose -f docker-compose.dev.yml up -d
 // stop specific docker-compose file (use -f flag)
 docker-compose -f docker-compose.dev.yml down
+// stop specific docker-compose file (use -f flag) and its volumes
+docker-compose -f docker-compose.dev.yml down -v
 // run 2 doker-compose files, here docker-compose.yml  has a common settings
 docker-compose -f docker-compose.yml  -f docker-compose.dev.yml up -d
 //if want to rebuild docker file important for dev
 docker-compose -f docker-compose.yml  -f docker-compose.dev.yml up -d --build
+// to show ip and other details about container 
+docker inspect express_node_app_container
+docker inspect express_node_app_mongo
+// show all networks
+docker network ls
+// to go inside mongdb container 
+docker exec -it express_node_app_mongo bash
+// to connect to db inside it (in old version use mongo -u user_name  -p password) but in new version >6 use mongosh
+mongosh -u user_name  -p password
+show dbs; 
+use testDB; // create new db
+db.books.insert({title:"book1"}) 
+// show all volumes 
+docker volume ls
+// remove volume
+docker volume rm volume_name
+// remove not used volumes
+docker volume prune
