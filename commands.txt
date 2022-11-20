@@ -1,6 +1,7 @@
 npm init -y
 npm i express
 npm i mongoose
+npm i redis
 npm i --save-dev nodemon
 // docker commands
 docker build -t express_node_app .
