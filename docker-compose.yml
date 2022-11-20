@@ -1,10 +1,10 @@
 version: "3"
 services:
   node-app:
-    container_name: express-node-app-container
+    #container_name: express-node-app-container    we will remove container_name when use --scale for auto generate names
     build: .
-    ports:
-      - "4000:4000"
+    # ports:
+    #  - "4000:4000"  we will remve it when use --scale for auto generate ips
     env_file:
       - ./.env
     depends_on:

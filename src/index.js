@@ -1,5 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const os = require("os");
 const { createClient } = require("redis");
 const PORT = process.env.PORT || 4000;
 
@@ -39,6 +40,7 @@ mongoose
 
 // Routes
 app.get("/", async (req, res) => {
+  console.log(`traffic ${os.hostname}`);
   await client.set("test", "test value");
   res.send("<h1>Hello</h1>");
 });
