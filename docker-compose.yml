@@ -7,6 +7,16 @@ services:
     #  - "4000:4000"  we will remve it when use --scale for auto generate ips
     env_file:
       - ./.env
+    deploy: # this section for docker swarm
+      replicas: 6 #If the service is replicated (which is the default), specify the number of containers that should be running at any given time.
+      placement:
+        max_replicas_per_node: 1
+      update_config: # Configures how the service should be updated. Useful for configuring rolling updates.
+        parallelism: 2 # The number of containers to rollback at a time. If set to 0, all containers rollback simultaneously.
+        delay: 10s #The time to wait between each container group’s rollback (default 0s).
+      restart_policy:
+        condition: on-failure
+        delay: 5s
     depends_on:
       - mongo
       - redis

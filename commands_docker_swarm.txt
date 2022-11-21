@@ -1,0 +1,7 @@
+// to show docker swarm status , by default is inactive
+docker info
+// docker swarm --help 
+// docker service --help
+// docker stack --help
+// we can write docker swarm in docker-compose 
+docker stack deploy -c docker-compose.yml -c docker-compose.prod.yml express-app
